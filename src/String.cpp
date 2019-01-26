@@ -43,55 +43,155 @@ bool String::isEmptyOrWhiteSpace() {
     }
 }
 
+bool String::compare(String &s) {
+    if(m_str == s.toStdStr()) return true;
+    else return false;
+}
+
 bool String::compare(const std::string &str) {
     if(m_str == str) return true;
     else return false;
 }
 
-bool String::equals(const std::string &str) {
-    if(m_str.compare(str) == 0) return true;
-    else false;
+inline bool String::equals(String &s) {
+    return this->compare(s);
+}
+
+inline bool String::equals(const std::string &str) {
+    return this->compare(str);
+}
+
+int String::length() {
+    return m_str.length();
+}
+
+inline int String::size() {
+    return this->length();
+}
+
+String String::concat(const String &s) {
+    m_str += s.m_str;
+    return String(m_str);
 }
 
 std::string String::concat(const std::string &str) {
     return m_str + str; 
 }
 
+void String::copyTo(String &s) {
+    s.m_str = m_str;
+}
+
 void String::copyTo(std::string &to){
     to = m_str;
 }
 
-int String::count(const std::string searchStr) {
-    return this->find(searchStr).size();; 
+int String::count(const String s) {
+    return this->find(s).size();
 }
 
-std::vector<int> String::find(const std::string search){
+int String::count(const std::string s) {
+    return this->find(s).size();
+}
+
+int String::count(const char* s) {
+    return this->find(s).size(); 
+}
+
+std::vector<int> String::find(const String s) {
     std::vector<int> vec;
-    std::size_t pos = m_str.find(search);
+    std::size_t pos = m_str.find(s.m_str);
     while(pos != std::string::npos) {
         vec.push_back(pos);
-        pos = m_str.find(search,pos+1);
+        pos = m_str.find(s.m_str,pos+1);
     } return vec;
 }
 
-inline std::vector<int> String::findAll(const std::string search){
-    return this->find(search);
+std::vector<int> String::find(const std::string s) {
+    std::vector<int> vec;
+    std::size_t pos = m_str.find(s);
+    while(pos != std::string::npos) {
+        vec.push_back(pos);
+        pos = m_str.find(s,pos+1);
+    } return vec;
 }
 
-int String::findFirst(std::string find){
-    std::size_t pos = m_str.find(find);
+std::vector<int> String::find(const char* cstr) {
+    std::vector<int> vec;
+    std::string s(cstr);
+    std::size_t pos = m_str.find(s);
+    while(pos != std::string::npos) {
+        vec.push_back(pos);
+        pos = m_str.find(std::string(s),pos+1);
+    } return vec;
+}
+
+inline std::vector<int> String::findAll(const String s) {
+    return this->find(s);
+}
+
+inline std::vector<int> String::findAll(const std::string s){
+    return this->find(s);
+}
+
+inline std::vector<int> String::findAll(const char* s) {
+    return this->find(s);
+}
+
+int String::findFirst(const String s) {
+    std::size_t pos = m_str.find(s.m_str);
     if(pos != std::string::npos){
         int i = static_cast<int>(pos);
         return i;
     } return 0;
 }
 
-inline int String::indexOf(const std::string find){
-    return this->findFirst(find);
+int String::findFirst(const std::string s) {
+    std::size_t pos = m_str.find(s);
+    if(pos != std::string::npos){
+        int i = static_cast<int>(pos);
+        return i;
+    } return 0;
 }
 
-int String::findLast(const std::string find){
-    std::size_t pos = m_str.rfind(find);
+int String::findFirst(const char* s) {
+    std::size_t pos = m_str.find(s);
+    if(pos != std::string::npos){
+        int i = static_cast<int>(pos);
+        return i;
+    } return 0;
+}
+
+inline int String::indexOf(const String s) {
+    return this->findFirst(s.m_str);
+}
+
+inline int String::indexOf(const std::string s) {
+    return this->findFirst(s);
+}
+
+inline int String::indexOf(const char* s) {
+    return this->findFirst(s);
+}
+
+int String::findLast(const String s) {
+    std::size_t pos = m_str.rfind(s.m_str);
+    if(pos != std::string::npos){
+        int i = static_cast<int>(pos);
+        return i;
+    } return 0;
+}
+
+int String::findLast(const std::string s) {
+    std::size_t pos = m_str.rfind(s);
+    if(pos != std::string::npos){
+        int i = static_cast<int>(pos);
+        return i;
+    } return 0;
+}
+
+int String::findLast(const char* s) {
+    std::size_t pos = m_str.rfind(s);
     if(pos != std::string::npos){
         int i = static_cast<int>(pos);
         return i;

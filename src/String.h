@@ -21,20 +21,49 @@ class String {
 
         bool isEmpty();
         bool isEmptyOrWhiteSpace();
-        bool compare(const std::string &str2);
-        bool equals(const std::string &str2);
+        bool compare(String &s);
+        bool compare(const std::string &s);
+
+        inline bool equals(String &s);
+        inline bool equals(const std::string &s);
+
+        int length();
+        inline int size();
 
         // string formatting 
-        std::string concat(const std::string &str2);
-        void copyTo(std::string &to);
-        int count(std::string searchStr); 
+        String concat (const String &s);
+        std::string concat(const std::string &s);
 
-        std::vector<int> find(std::string search);
-        inline std::vector<int> findAll(std::string search);
-        int findFirst(std::string find);
-        inline int indexOf(std::string find);
-        int findLast(std::string find);
-        inline int lastIndexOf(std::string find);
+        void copyTo(String &s);
+        void copyTo(std::string &s);
+        
+        int count(const String s);
+        int count(const std::string s); 
+        int count(const char* s); 
+
+        std::vector<int> find(const String s);
+        std::vector<int> find(const std::string s);
+        std::vector<int> find(const char* s);
+
+        inline std::vector<int> findAll(const String s);
+        inline std::vector<int> findAll(const std::string cstr);
+        inline std::vector<int> findAll(const char* cstr);
+
+        int findFirst(const String s);
+        int findFirst(const std::string s);
+        int findFirst(const char* s);
+
+        inline int indexOf(const String s);
+        inline int indexOf(const std::string s);
+        inline int indexOf(const char* s);
+
+        int findLast(const String s);
+        int findLast(const std::string s);
+        int findLast(const char* s);
+
+        inline int lastIndexOf(const String s);
+        inline int lastIndexOf(const std::string s);
+        inline int lastIndexOf(const char* s);
 
         std::string replace(std::string oldstr, std::string newstr);
         std::string replaceFirst(std::string oldstr, std::string newstr);

@@ -1,30 +1,32 @@
 #ifndef BOOLEAN_H
 #define BOOLEAN_H
 
-#include <string>
+#include "Datatype.h"
 
-class Boolean {
+namespace dt {
 
-    private:
-        bool _internal = false;
+    class Boolean : Datatype {
 
-    public:
-        Boolean();
-        Boolean(int value);
-        Boolean(const char* value);
-        Boolean(std::string value);
+        private:
+            bool _internal = false;
 
-        bool getValue();
-        bool compareTo(Boolean b);
-        bool compareTo(bool b);
-        std::string toString();
-        static std::string toString(Boolean b);
-        static std::string toString(bool b);
-        static Boolean valueOf(bool b);
-        static Boolean valueOf(const char* cs);
-        static Boolean vlaueOf(std::string s);
-};
+        public:
+            Boolean();
+            Boolean(int value);
+            Boolean(const char* value);
+            Boolean(std::string value);
 
+            bool getValue();
+            bool compareTo(Boolean b);
+            bool compareTo(bool b);
+            std::string toString();
+            static std::string toString(Boolean b);
+            static std::string toString(bool b);
+            static Boolean valueOf(bool b);
+            static Boolean valueOf(const char* cs);
+            static Boolean vlaueOf(std::string s);
+    };
+}
 
 #endif //BOOLEAN_H 
 
