@@ -197,9 +197,17 @@ int String::findLast(const char* s) {
         return i;
     } return 0;
 }
+
+inline int String::lastIndexOf(const String s){
+    return this->findLast(s);
+}
     
-inline int String::lastIndexOf(const std::string find){
-    return this->findLast(find);
+inline int String::lastIndexOf(const std::string s){
+    return this->findLast(s);
+}
+
+inline int String::lastIndexOf(const char* s){
+    return this->findLast(s);
 }
 
 std::string String::replace(const std::string oldstr, const std::string newstr){

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <any>
 
 class String {
 
@@ -66,6 +67,7 @@ class String {
         inline int lastIndexOf(const char* s);
 
         std::string replace(std::string oldstr, std::string newstr);
+
         std::string replaceFirst(std::string oldstr, std::string newstr);
         std::string replaceLast(std::string oldstr, std::string newstr);
         std::string replaceHead(int headsize, std::string newstr);

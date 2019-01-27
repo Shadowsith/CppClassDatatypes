@@ -92,11 +92,29 @@ void t_find_findAll() {
 }
 
 void t_findFirst_indexOf() {
-    
+    int i = 4;
+    String s("hello you");
+    int i1 = s.findFirst("o");
+    int i2 = s.findFirst(std::string("o"));
+    int i3 = s.findFirst(String("o"));
+    bool t = (i == i1) && (i == i2) && (i == i3);
+
+    message(t, "findFirst/indexOf");
 }
 
 void t_findLast_lastIndexOf() {
+    int i = 7;
+    String s("hello you");
+    int i1 = s.findLast("o");
+    int i2 = s.findLast(std::string("o"));
+    int i3 = s.findLast(String("o"));
+    bool t = (i == i1) && (i == i2) && (i == i3);
 
+    message(t, "findLast/lastIndexOf");
+}
+
+void t_replace() {
+    String s = "hello";
 }
 
 int main(void)
@@ -111,4 +129,6 @@ int main(void)
     t_concat();
     t_copyTo();
     t_find_findAll();
+    t_findFirst_indexOf();
+    t_findLast_lastIndexOf();
 }
