@@ -66,21 +66,49 @@ class String {
         inline int lastIndexOf(const std::string s);
         inline int lastIndexOf(const char* s);
 
-        std::string replace(std::string oldstr, std::string newstr);
+        std::string replace(const std::string oldstr, const std::string newstr);
+        std::string replace(const char* oldstr, const char* newstr); 
+        std::string replace(const String oldstr, const String newstr); 
 
-        std::string replaceFirst(std::string oldstr, std::string newstr);
-        std::string replaceLast(std::string oldstr, std::string newstr);
-        std::string replaceHead(int headsize, std::string newstr);
-        std::string replaceTail(int tailsize, std::string newstr);
+        std::string replaceFirst(const std::string oldstr, const std::string newstr);
+        std::string replaceFirst(const char* oldstr, const char* newstr); 
+        std::string replaceFirst(const String oldstr, const String newstr); 
 
-        std::string erase(std::string erasestr); 
-        std::string eraseFirst(std::string erasestr); 
-        std::string eraseLast(std::string erasestr); 
+        std::string replaceLast(const std::string oldstr, const std::string newstr);
+        std::string replaceLast(const char* oldstr, const char* newstr); 
+        std::string replaceLast(const String oldstr, const String newstr); 
+
+        std::string replaceHead(const int headsize, const std::string newstr);
+        std::string replaceHead(const int headsize, const String newstr);
+        std::string replaceHead(const int headsize, const char* newstr);
+
+        std::string replaceTail(const int tailsize, const std::string newstr);
+        std::string replaceTail(const int tailsize, const String newstr);
+        std::string replaceTail(const int tailsize, const char* newstr);
+
+        std::string erase(const std::string erasestr); 
+        std::string erase(const String erasestr); 
+        std::string erase(const char* erasestr); 
+
+        std::string eraseFirst(const std::string erasestr); 
+        std::string eraseFirst(const String eraseFirststr); 
+        std::string eraseFirst(const char* eraseFirststr); 
+
+        std::string eraseLast(const std::string erasestr); 
+        std::string eraseLast(const String erasestr); 
+        std::string eraseLast(const char* erasestr); 
+
         std::string eraseHead(int headsize); 
         std::string eraseTail(int tailsize); 
 
         std::vector<std::string> split(const std::string delimiter);
-        void swap(std::string &str2);
+        std::vector<std::string> split(const String delimiter);
+        std::vector<std::string> split(const char* delimiter);
+        std::vector<std::string> split(const char delimiter);
+
+        void swap(std::string &s);
+        void swap(String &s);
+        void swap(char* s);
 
         std::string toUpper();
         std::string toLower();

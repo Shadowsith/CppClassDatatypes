@@ -98,15 +98,6 @@ int String::count(const char* s) {
     return this->find(s).size(); 
 }
 
-std::vector<int> String::find(const String s) {
-    std::vector<int> vec;
-    std::size_t pos = m_str.find(s.m_str);
-    while(pos != std::string::npos) {
-        vec.push_back(pos);
-        pos = m_str.find(s.m_str,pos+1);
-    } return vec;
-}
-
 std::vector<int> String::find(const std::string s) {
     std::vector<int> vec;
     std::size_t pos = m_str.find(s);
@@ -116,14 +107,12 @@ std::vector<int> String::find(const std::string s) {
     } return vec;
 }
 
+std::vector<int> String::find(const String s) {
+    return this->find(s.m_str);
+}
+
 std::vector<int> String::find(const char* cstr) {
-    std::vector<int> vec;
-    std::string s(cstr);
-    std::size_t pos = m_str.find(s);
-    while(pos != std::string::npos) {
-        vec.push_back(pos);
-        pos = m_str.find(std::string(s),pos+1);
-    } return vec;
+    return this->find(std::string(cstr)); 
 }
 
 inline std::vector<int> String::findAll(const String s) {
@@ -138,14 +127,6 @@ inline std::vector<int> String::findAll(const char* s) {
     return this->find(s);
 }
 
-int String::findFirst(const String s) {
-    std::size_t pos = m_str.find(s.m_str);
-    if(pos != std::string::npos){
-        int i = static_cast<int>(pos);
-        return i;
-    } return 0;
-}
-
 int String::findFirst(const std::string s) {
     std::size_t pos = m_str.find(s);
     if(pos != std::string::npos){
@@ -154,12 +135,12 @@ int String::findFirst(const std::string s) {
     } return 0;
 }
 
+int String::findFirst(const String s) {
+    return this->findFirst(s.m_str);
+}
+
 int String::findFirst(const char* s) {
-    std::size_t pos = m_str.find(s);
-    if(pos != std::string::npos){
-        int i = static_cast<int>(pos);
-        return i;
-    } return 0;
+    return this->findFirst(std::string(s));
 }
 
 inline int String::indexOf(const String s) {
@@ -174,13 +155,6 @@ inline int String::indexOf(const char* s) {
     return this->findFirst(s);
 }
 
-int String::findLast(const String s) {
-    std::size_t pos = m_str.rfind(s.m_str);
-    if(pos != std::string::npos){
-        int i = static_cast<int>(pos);
-        return i;
-    } return 0;
-}
 
 int String::findLast(const std::string s) {
     std::size_t pos = m_str.rfind(s);
@@ -190,12 +164,12 @@ int String::findLast(const std::string s) {
     } return 0;
 }
 
+int String::findLast(const String s) {
+    return this->findLast(s.m_str);
+}
+
 int String::findLast(const char* s) {
-    std::size_t pos = m_str.rfind(s);
-    if(pos != std::string::npos){
-        int i = static_cast<int>(pos);
-        return i;
-    } return 0;
+    return this->findLast(std::string(s));
 }
 
 inline int String::lastIndexOf(const String s){
@@ -219,11 +193,27 @@ std::string String::replace(const std::string oldstr, const std::string newstr){
     return m_str;
 }
 
+std::string String::replace(const String oldstr, const String newstr) {
+    return this->replace(oldstr.m_str, newstr.m_str); 
+}
+
+std::string String::replace(const char* oldstr, const char* newstr) {
+    return this->replace(std::string(oldstr), std::string(newstr));
+}
+
 std::string String::replaceFirst(const std::string oldstr, const std::string newstr){
     std::size_t pos = m_str.find(oldstr);
     if(pos != std::string::npos) {
         m_str.replace(pos, oldstr.length(), newstr);
     } return m_str;
+}
+
+std::string String::replaceFirst(const String oldstr, const String newstr) {
+    return this->replaceFirst(oldstr.m_str, newstr.m_str); 
+}
+
+std::string String::replaceFirst(const char* oldstr, const char* newstr) {
+    return this->replaceFirst(std::string(oldstr), std::string(newstr));
 }
 
 std::string String::replaceLast(const std::string oldstr, const std::string newstr){
@@ -233,16 +223,40 @@ std::string String::replaceLast(const std::string oldstr, const std::string news
     } return m_str;
 }
 
-std::string String::replaceHead(int headsize, const std::string newstr){
+std::string String::replaceLast(const String oldstr, const String newstr) {
+    return this->replaceLast(oldstr.m_str, newstr.m_str); 
+}
+
+std::string String::replaceLast(const char* oldstr, const char* newstr) {
+    return this->replaceLast(std::string(oldstr), std::string(newstr));
+}
+
+std::string String::replaceHead(const int headsize, const std::string newstr){
     m_str.erase(0,headsize);
     m_str = newstr + m_str;
     return m_str;
 }
 
-std::string String::replaceTail(int tailsize, const std::string newstr){
+std::string String::replaceHead(const int headsize, const String newstr){
+    return this->replaceHead(headsize, newstr.m_str);
+}
+
+std::string String::replaceHead(const int headsize, const char* newstr){
+    return this->replaceHead(headsize, std::string(newstr));
+}
+
+std::string String::replaceTail(const int tailsize, const std::string newstr){
     m_str.erase(m_str.end()-tailsize, m_str.end());
     m_str += newstr;
     return m_str;
+}
+
+std::string String::replaceTail(const int tailsize, const String newstr){
+    return this->replaceTail(tailsize, newstr.m_str);
+}
+
+std::string String::replaceTail(const int tailsize, const char* newstr){
+    return this->replaceTail(tailsize, std::string(newstr));
 }
 
 std::string String::erase(const std::string erasestr){
@@ -254,6 +268,14 @@ std::string String::erase(const std::string erasestr){
     return m_str;
 } 
 
+std::string String::erase(const String erasestr){
+    return this->erase(erasestr.m_str);
+}
+
+std::string String::erase(const char* erasestr){
+    return this->erase(std::string(erasestr));
+}
+
 std::string String::eraseFirst(const std::string erasestr){
     std::size_t pos = m_str.find(erasestr);
     if(pos != std::string::npos){
@@ -261,12 +283,28 @@ std::string String::eraseFirst(const std::string erasestr){
     } return m_str;
 } 
 
+std::string String::eraseFirst(const String eraseFirststr){
+    return this->eraseFirst(eraseFirststr.m_str);
+}
+
+std::string String::eraseFirst(const char* eraseFirststr){
+    return this->eraseFirst(std::string(eraseFirststr));
+}
+
 std::string String::eraseLast(std::string erasestr){
     std::size_t pos = m_str.rfind(erasestr);
     if(pos != std::string::npos){
         m_str.erase(pos, erasestr.length());
     } return m_str;
 } 
+
+std::string String::eraseLast(const String eraseLaststr){
+    return this->eraseLast(eraseLaststr.m_str);
+}
+
+std::string String::eraseLast(const char* eraseLaststr){
+    return this->eraseLast(std::string(eraseLaststr));
+}
 
 std::string String::eraseHead(const int headsize){
     m_str.erase(0,headsize);
@@ -292,7 +330,25 @@ std::vector<std::string> String::split(const std::string delimiter){
     return parts;
 }
 
+std::vector<std::string> String::split(const String delimiter) {
+    return this->split(delimiter.m_str);
+}
+
+std::vector<std::string> String::split(const char* delimiter) {
+    return this->split(std::string(delimiter));
+}
+
+std::vector<std::string> String::split(const char delimiter) {
+    return this->split(std::string()[0] = delimiter);
+}
+
 void String::swap(std::string &str2) {
+    std::string str3 = m_str;
+    m_str = str2;
+    str2 = str3;
+}
+
+void String::swap(String &str2) {
     std::string str3 = m_str;
     m_str = str2;
     str2 = str3;
@@ -369,7 +425,7 @@ std::string String::fillRight(const int length, const char fill){
     } return m_str;
 }
 
-inline std::string String::padRight(int length, char fill){
+inline std::string String::padRight(const int length, const char fill){
     return this->fillRight(length, fill);
 }
 
@@ -388,10 +444,6 @@ std::string String::normPathWindows(){
         }
     } return m_str;
 }
-
-
-
-
 
 // formatting 
 
