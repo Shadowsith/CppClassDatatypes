@@ -1,3 +1,0 @@
-[submodule "src/cli-textformatpp"]
-	path = test/cli-textformatpp
-	url = https://github.com/Shadowsith/cli-textformatpp
