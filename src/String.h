@@ -108,7 +108,6 @@ class String {
 
         void swap(std::string &s);
         void swap(String &s);
-        void swap(char* s);
 
         std::string toUpper();
         std::string toLower();

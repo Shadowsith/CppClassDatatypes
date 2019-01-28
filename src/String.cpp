@@ -339,7 +339,9 @@ std::vector<std::string> String::split(const char* delimiter) {
 }
 
 std::vector<std::string> String::split(const char delimiter) {
-    return this->split(std::string()[0] = delimiter);
+    std::string s;
+    s += delimiter;
+    return this->split(s);
 }
 
 void String::swap(std::string &str2) {

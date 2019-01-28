@@ -117,6 +117,87 @@ void t_replace() {
     String s = "hello";
 }
 
+
+void t_split() {
+    static const std::string arr[] = {"you", "are", "the", "greatest"}; 
+    std::vector<std::string> vec(arr, arr + sizeof(arr) / sizeof(arr[0]));
+
+    String s = "you are the greatest";
+
+    std::string ds = " ";
+    String dS = " ";
+    const char* dcst = " ";
+    char dc = ' '; 
+
+    std::vector<std::string> vec1 = s.split(ds);
+    std::vector<std::string> vec2 = s.split(dS);
+    std::vector<std::string> vec3 = s.split(dcst);
+    std::vector<std::string> vec4 = s.split(dc);
+    std::vector<std::string> vec5 = s.split(" ");
+    std::vector<std::string> vec6 = s.split(' ');
+
+    bool t1 = (vec == vec1) && (vec == vec2) && (vec == vec3) && (vec == vec4);
+    bool t2 = (vec == vec5) && (vec == vec6);
+
+    message(t1 == t2, "split");
+}
+
+void t_swap() {
+    String s1 = "hallo";
+    String s2 = "bye";
+    s1.swap(s2);
+
+    String s3 = "ciao";
+    std::string s4 = "see you";
+    s3.swap(s4);
+
+    bool t1 = (s1 == "bye") && (s2 == "hallo");
+    bool t2 = (s3 == "see you") && (s4 == "ciao");
+    message(t1 == t2, "swap");
+}
+
+void t_toUpper() {
+    String s = "hello";
+    s.toUpper();
+    message(s == "HELLO", "toUpper");
+}
+
+void t_toLower() {
+    String s = "HELLO";
+    s.toLower();
+    message(s == "hello", "toLower");
+}
+
+void t_trim() {
+    String s = "   hello     ";
+    s.trim();
+    message(s == "hello", "trim");
+}
+
+void t_trimLeft() {
+    String s = "   hello     ";
+    s.trimLeft();
+    message(s == "hello     ", "trimLeft");
+}
+
+void t_trimRight() {
+    String s = "   hello     ";
+    s.trimRight();
+    message(s == "   hello", "trimRight");
+}
+
+void t_fillLeft_padLeft() {
+    String s = "111";
+    s.fillLeft(3,'X');
+    message(s == "XXX111", "fillLeft/padLeft");
+}
+
+void t_fillRight_padRight() {
+    String s = "111";
+    s.fillRight(3, 'X');
+    message(s == "111XXX", "fillRight/padRigth");
+}
+
 int main(void)
 {
     t_toStdStr();
@@ -131,4 +212,13 @@ int main(void)
     t_find_findAll();
     t_findFirst_indexOf();
     t_findLast_lastIndexOf();
+    t_split();
+    t_swap();
+    t_toUpper();
+    t_toLower();
+    t_trim();
+    t_trimLeft();
+    t_trimRight();
+    t_fillLeft_padLeft();
+    t_fillRight_padRight();
 }

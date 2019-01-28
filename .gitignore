@@ -33,3 +33,6 @@
 
 # Tags
 tags
+
+# bins
+/test/bin/*
