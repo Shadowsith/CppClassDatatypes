@@ -14,6 +14,7 @@ void message(bool condition, std::string msg) {
 void t_toStdStr() {
     message(String("hallo").toStdStr() == std::string("hallo"),
             "toStdStr");
+
 } 
 
 void t_toCStr() {
@@ -65,6 +66,7 @@ void t_copyTo() {
     std::string str;
     String("hello").copyTo(str);
     message(str == "hello", "CopyTo");
+
 }
 
 void t_count() {
@@ -114,9 +116,160 @@ void t_findLast_lastIndexOf() {
 }
 
 void t_replace() {
-    String s = "hello";
+    std::string res = "hi you, hi there";
+    String s = "hello you, hello there";
+    String s1 = "hello you, hello there";
+    String s2 = "hello";
+    String s3 = "hi";
+    std::string s4 = "hello";
+    std::string s5 = "hi";
+
+    bool t1 = s1.replace(s2, s3) == res;
+    s1 = s;
+    bool t2 = s1.replace(s4, s5) == res;
+    s1 = s;
+    bool t3 = s1.replace("hello", "hi") == res;
+
+    message(t1 == t2 == t3, "replace");
 }
 
+void t_replaceFirst() {
+    std::string res = "hi you, hello there";
+    String s = "hello you, hello there";
+    String s1 = "hello you, hello there";
+    String s2 = "hello";
+    String s3 = "hi";
+    std::string s4 = "hello";
+    std::string s5 = "hi";
+
+    bool t1 = s1.replaceFirst(s2, s3) == res;
+    s1 = s;
+    bool t2 = s1.replaceFirst(s4, s5) == res;
+    s1 = s;
+    bool t3 = s1.replaceFirst("hello", "hi") == res;
+
+    message(t1 == t2 == t3, "replaceFirst");
+}
+
+void t_replaceLast() {
+    std::string res = "hello you, hi there";
+    String s = "hello you, hello there";
+    String s1 = "hello you, hello there";
+    String s2 = "hello";
+    String s3 = "hi";
+    std::string s4 = "hello";
+    std::string s5 = "hi";
+
+    bool t1 = s1.replaceLast(s2, s3) == res;
+    s1 = s;
+    bool t2 = s1.replaceLast(s4, s5) == res;
+    s1 = s;
+    bool t3 = s1.replaceLast("hello", "hi") == res;
+
+    message(t1 == t2 == t3, "replaceLast");
+}
+
+void t_replaceHead() {
+    std::string res = "hey here, hi there";
+    String s = "hello you, hi there";
+    String s1 = "hello you, hi there";
+    const int head = 9;
+    String s2 = "hey here";
+    std::string s3 = "hey here";
+
+    bool t1 = s1.replaceHead(head, s2) == res;
+    s1 = s;
+    bool t2 = s1.replaceHead(head, s3) == res;
+    s1 = s;
+    bool t3 = s1.replaceHead(head, "hey here") == res;
+
+    message(t1 == t2 == t3, "replaceHead");
+}
+
+void t_replaceTail() {
+    std::string res = "you are great and cool";
+    String s = "you are great and nice";
+    String s1 = "you are great and nice";
+    const int tail = 4;
+    String s2 = "cool";
+    std::string s3 = "cool";
+
+    bool t1 = s1.replaceTail(tail, s2) == res;
+    s1 = s;
+    bool t2 = s1.replaceTail(tail, s3) == res;
+    s1 = s;
+    bool t3 = s1.replaceTail(tail, "cool") == res;
+
+    message(t1 == t2 == t3, "replaceTail");
+}
+
+void t_erase() {
+    std::string res = "hey you are good and cool";
+    String s = "hey you are not good and not cool";
+    String s1 = "hey you are not good and not cool";
+    String s2 = "not ";
+    std::string s3 = "not ";
+
+    bool t1 = s1.erase(s2) == res;
+    s1 = s;
+    bool t2 = s1.erase(s3) == res;
+    s1 = s;
+    bool t3 = s1.erase("not ") == res;
+
+    message(t1 == t2 == t3, "erase");
+}
+
+void t_eraseFirst() {
+    std::string res = "hey you are good and not cool";
+    String s = "hey you are not good and not cool";
+    String s1 = "hey you are not good and not cool";
+    String s2 = "not ";
+    std::string s3 = "not ";
+
+    bool t1 = s1.eraseFirst(s2) == res;
+    s1 = s;
+    bool t2 = s1.eraseFirst(s3) == res;
+    s1 = s;
+    bool t3 = s1.eraseFirst("not ") == res;
+
+    message(t1 == t2 == t3, "eraseFirst");
+}
+
+void t_eraseLast() {
+    std::string res = "hey you are not good and cool";
+    String s = "hey you are not good and not cool";
+    String s1 = "hey you are not good and not cool";
+    String s2 = "not ";
+    std::string s3 = "not ";
+
+    bool t1 = s1.eraseLast(s2) == res;
+    s1 = s;
+    bool t2 = s1.eraseLast(s3) == res;
+    s1 = s;
+    bool t3 = s1.eraseLast("not ") == res;
+
+    message(t1 == t2 == t3, "eraseLast");
+}
+
+void t_eraseHead() {
+    std::string res = "you are not good and not cool";
+    String s = "hey you are not good and not cool";
+    const int head = 4;
+
+    bool t1 = s.eraseHead(head) == res;
+
+    message(t1, "eraseHead");
+}
+
+void t_eraseTail() {
+    std::string res = "hey you are not good and not";
+    String s = "hey you are not good and not cool";
+    const int tail = 5;
+
+    bool t1 = s.eraseHead(tail) == res;
+
+    message(t1, "eraseTail");
+}
 
 void t_split() {
     static const std::string arr[] = {"you", "are", "the", "greatest"}; 
@@ -212,6 +365,14 @@ int main(void)
     t_find_findAll();
     t_findFirst_indexOf();
     t_findLast_lastIndexOf();
+    t_replace();
+    t_replaceFirst();
+    t_replaceLast();
+    t_replaceHead();
+    t_replaceTail();
+    t_erase();
+    t_eraseFirst();
+    t_eraseLast();
     t_split();
     t_swap();
     t_toUpper();

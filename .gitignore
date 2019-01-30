@@ -33,6 +33,7 @@
 
 # Tags
 tags
+.vscode/*
 
 # bins
 /test/bin/*
