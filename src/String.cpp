@@ -28,6 +28,10 @@ std::vector<char> String::toCharArr() {
     return vec;
 }
 
+char String::charAt(const int pos) {
+    return m_str.at(pos);
+}
+
 bool String::isEmpty() {
     return m_str.empty();
 }
@@ -508,19 +512,21 @@ String& String::operator+= (const String &S) {
     return *this;
 }
 
-String operator+ (String lhs, const String& rhs) {
-    lhs += rhs;
-    return lhs;
+std::string String::operator+(const String &s) {
+    return m_str + s.m_str;
+}
+
+std::string String::operator+(const std::string &s) {
+    return m_str + s;
+}
+
+std::string String::operator+(const char* s) {
+    return m_str + std::string(s);
 }
 
 String& String::operator+= (const std::string str) {
     this->m_str += str;
     return *this;
-}
-
-String operator+ (String lhs, const std::string& rhs) {
-    lhs += rhs;
-    return lhs;
 }
 
 String& String::operator+= (const char* c) {
@@ -529,19 +535,15 @@ String& String::operator+= (const char* c) {
     return *this;
 }
 
-String operator+ (String lhs, const char* rhs) {
-    lhs += rhs;
-    return lhs;
-}
-
 String& String::operator+= (const char c) {
     this->m_str += c;
     return *this;
 }
 
-String operator+ (String lhs, const char rhs) {
-    lhs += rhs;
-    return lhs;
+std::string String::operator*(String &s) {
+    for(int i = 0; i < s.size(); i++) {
+        m_str += s.m_str;
+    } return m_str;
 }
 
 char& String::operator[] (int pos) {

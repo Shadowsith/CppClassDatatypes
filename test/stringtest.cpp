@@ -19,7 +19,8 @@ void t_toStdStr() {
 
 void t_toCStr() {
     const char* c = "hallo";
-    message(String("hallo").toCStr() == c, "toCStr");
+    String s("hallo");
+    message(s.toCStr() == c, "toCStr");
 }
 
 void t_toCArr() {
@@ -31,6 +32,11 @@ void t_toCArr() {
     }
     message(vec == tvec, "toCArr");
 } 
+
+void t_charAt() {
+    String s("hello");
+    message(s.charAt(2) == 'l', "charAt");
+}
 
 void t_empty() {
     message(String("").isEmpty(), "isEmpty");
@@ -351,11 +357,60 @@ void t_fillRight_padRight() {
     message(s == "111XXX", "fillRight/padRigth");
 }
 
+void t_op_declaration() {
+    String s("hello");
+    std::string str = s; 
+    message(s == str, "Operator=");
+}
+
+void t_op_equal() {
+    String s("hello");
+    message(s == "hello" && s == std::string("hello"), "Operator==");
+}
+
+void t_op_unequal() {
+    String s("hello");
+    message(s != "hallo" || s != std::string("hallo"), "Operator!=");
+}
+
+void t_op_outstream() {
+    std::cout << text::green(String("ACCEPT: Operator<<").toStdStr()) << std::endl;
+}
+
+void t_op_brackets() {
+    String s("hello");
+    message(s[0] == 'h', "Operator[]");
+}
+
+void t_op_plus() {
+    String s;
+    s = String("he") + std::string("ll") + "o";
+    message(s == "hello", "Operator+");
+}
+
+void t_op_plusEqual() {
+    String s("hell");
+    s += std::string("o");
+    message(s == "hello", "Operator+=");
+}
+
 int main(void)
 {
+    std::cout << std::endl << "Operator Tests:" << std::endl;
+    t_op_declaration();
+    t_op_equal();
+    t_op_unequal();
+    t_op_outstream();
+    t_op_brackets();
+    t_op_plus();
+    t_op_plusEqual();
+
+    std::cout << std::endl;
+    std::cout << "Method Tests:" << std::endl;
     t_toStdStr();
     t_toCStr();
     t_toCArr();
+    t_charAt();
     t_empty();
     t_emptyOrWS();
     t_compare_equals();

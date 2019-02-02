@@ -31,6 +31,8 @@ class String {
         int length();
         inline int size();
 
+        char charAt(const int pos);
+
         // string formatting 
         String concat (const String &s);
         std::string concat(const std::string &s);
@@ -143,10 +145,16 @@ class String {
         bool operator!= (const std::string str);
         bool operator!= (const char* c);
 
+        std::string operator+(const String &s);
+        std::string operator+(const std::string &s);
+        std::string operator+(const char* s);
+
         String& operator+= (const String &S);
         String& operator+= (const std::string str);
         String& operator+= (const char* c);
         String& operator+= (const char c); 
+
+        std::string operator*(String &s);
 
         char& operator[] (int pos);
 
